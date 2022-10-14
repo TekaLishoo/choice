@@ -3,6 +3,9 @@ from config.config import Settings
 from fastapi import Depends
 
 
-def get_mongodb(settings=Depends(Settings)):
+settings = Settings()
+
+
+def get_mongodb():
     return MongoClient(settings.MONGO_HOST, settings.MONGO_PORT)
 
