@@ -4,18 +4,19 @@ from bs4 import BeautifulSoup
 from PIL import Image
 import pandas as pd
 import numpy as np
-import sys
+from config.config import Settings
+
+
+settings = Settings()
 
 
 def update_dresses():
-    dresses = get_mongodb().dresses.objects
-    dresses.drop()
 
     end_of_url = ['', ]
     for i in range(2, 25):
         end_of_url.append(f'?from={i}')
     image_links = []
-    im = []
+
     for ending in end_of_url:
         url = f'https://www.apart.ru/odezhda/platya{ending}'
         print(url)
@@ -38,12 +39,13 @@ def update_dresses():
     im_array = np.array([np.asarray(img.resize((280, 404))).flatten() for img in im], dtype=int)
     df_im = pd.DataFrame(im_array, dtype=int)
     df_im.index += 1
+    dresses = get_mongodb().dresses.objects
+    dresses.drop()
     for i in range(1, im_array.shape[0] + 1):
         dresses.insert_one({'id': f'{i}',
                             'values': f'{list(df_im.loc[i].values)}'})
 
-    sys.stdout.write(
+    print(
             "Successfully updated mongo dresses table with %d objects."
             % int(dresses.count_documents({}))
     )
-
