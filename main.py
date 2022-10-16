@@ -1,21 +1,33 @@
-from fastapi import FastAPI, BackgroundTasks
-from fastapi_utils.tasks import repeat_every
-from users.db_users import models_users
-from database import engine
-from users.routers import router_users
-from dress.update_dresses import update_dresses
-
-app = FastAPI()
-
-app.include_router(router_users.router)
-
-models_users.Base.metadata.create_all(engine)
+import asyncio
+import uvicorn
+from api import app as app_fastapi
+from scheduler import app as app_rocketry
 
 
-@app.on_event("startup")
-@repeat_every(seconds=60 * 60 * 24)
-async def update_dresses_periodically():
-    print('Dresses uploading process has been started')
-    update_dresses()
+class Server(uvicorn.Server):
+    """Customized uvicorn.Server
+
+    Uvicorn server overrides signals, so we need to include
+    Rocketry to the signals."""
+    def handle_exit(self, sig: int, frame) -> None:
+        app_rocketry.session.shut_down()
+        return super().handle_exit(sig, frame)
+
+
+async def main():
+    """Run scheduler and the API"""
+
+    server = Server(config=uvicorn.Config(app_fastapi, workers=1, loop="asyncio", reload=True))
+
+    api = asyncio.create_task(server.serve())
+    sched = asyncio.create_task(app_rocketry.serve())
+
+    await asyncio.wait([sched, api])
+
+if __name__ == "__main__":
+    asyncio.run(main())
+
+
+
 
 

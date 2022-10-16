@@ -10,7 +10,11 @@ from config.config import Settings
 settings = Settings()
 
 
-def update_dresses():
+async def get_request(url):
+    return requests.get(url)
+
+
+async def update_dresses():
 
     end_of_url = ['', ]
     for i in range(2, 25):
@@ -20,7 +24,7 @@ def update_dresses():
     for ending in end_of_url:
         url = f'https://www.apart.ru/odezhda/platya{ending}'
         print(url)
-        page = requests.get(url)
+        page = await get_request(url)
         soup = BeautifulSoup(page.text, 'html.parser')
         data = soup.find('div', attrs={'class': 'list'})
         imgs = data.find_all('img')
