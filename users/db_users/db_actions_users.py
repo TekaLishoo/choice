@@ -1,5 +1,5 @@
 from sqlalchemy.orm.session import Session
-from users.routers.schemas_users import UserBase
+from users.routers_users.schemas_users import UserBase
 from users.db_users.models_users import ChUser
 from users.db_users.hashing import Hash
 

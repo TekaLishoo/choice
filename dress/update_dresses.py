@@ -42,8 +42,7 @@ async def update_dresses():
     dresses = get_mongodb().dresses.objects
     dresses.drop()
     for i in range(1, im_array.shape[0] + 1):
-        dresses.insert_one({'id': f'{i}',
-                            'values': f'{list(df_im.loc[i].values)}'})
+        dresses.insert_one({'id_image': i, 'values': f'{list(df_im.loc[i].values)}'})
 
     print(
             "Successfully updated mongo dresses table with %d objects."

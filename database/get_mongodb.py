@@ -1,6 +1,5 @@
 from pymongo import MongoClient
 from config.config import Settings
-from fastapi import Depends
 
 
 settings = Settings()
