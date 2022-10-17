@@ -4,3 +4,4 @@
 .idea/
 .pytest_cache/
 csv/
+logging_info.log
