@@ -9,7 +9,6 @@ class Settings(BaseSettings):
 
     MONGO_USER: str
     MONGO_PASS: str
-    MONGO_DB: str
     MONGO_HOST: str
     MONGO_PORT: int
 

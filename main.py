@@ -1,19 +1,33 @@
-from fastapi import FastAPI, BackgroundTasks
-from users.db_users import models_users
-from database import engine
-from users.routers import router_users
-from dress.load_dresses import LoadDresses
+import asyncio
+import uvicorn
+from api import app as app_fastapi
+from scheduler import app as app_rocketry
 
 
-app = FastAPI()
+class Server(uvicorn.Server):
+    """Customized uvicorn.Server
 
-app.include_router(router_users.router)
+    Uvicorn server overrides signals, so we need to include
+    Rocketry to the signals."""
+    def handle_exit(self, sig: int, frame) -> None:
+        app_rocketry.session.shut_down()
+        return super().handle_exit(sig, frame)
 
-models_users.Base.metadata.create_all(engine)
 
-dress_handle = LoadDresses()
+async def main():
+    """Run scheduler and the API"""
+
+    server = Server(config=uvicorn.Config(app_fastapi, workers=1, loop="asyncio", reload=True))
+
+    api = asyncio.create_task(server.serve())
+    sched = asyncio.create_task(app_rocketry.serve())
+
+    await asyncio.wait([sched, api])
+
+if __name__ == "__main__":
+    asyncio.run(main())
 
 
-@app.get("/")
-async def startup_load_dresses(background_tasks: BackgroundTasks):
-    background_tasks.add_task(dress_handle.load)
+
+
+
