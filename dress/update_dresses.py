@@ -5,9 +5,11 @@ from PIL import Image
 import pandas as pd
 import numpy as np
 from config.config import Settings
+from logging_conf import setup_logger
 
 
 settings = Settings()
+local_logger = setup_logger(__name__)
 
 
 async def update_dresses():
@@ -44,7 +46,6 @@ async def update_dresses():
     for i in range(1, im_array.shape[0] + 1):
         dresses.insert_one({'id_image': i, 'values': f'{list(df_im.loc[i].values)}'})
 
-    print(
-            "Successfully updated mongo dresses table with %d objects."
-            % int(dresses.count_documents({}))
-    )
+    succes_message = "Successfully updated mongo dresses table with %d objects." % int(dresses.count_documents({}))
+    local_logger.info(succes_message)
+    print(succes_message)
