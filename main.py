@@ -9,6 +9,7 @@ class Server(uvicorn.Server):
 
     Uvicorn server overrides signals, so we need to include
     Rocketry to the signals."""
+
     def handle_exit(self, sig: int, frame) -> None:
         app_rocketry.session.shut_down()
         return super().handle_exit(sig, frame)
@@ -17,7 +18,7 @@ class Server(uvicorn.Server):
 async def main():
     """Run scheduler and the API"""
 
-    server = Server(config=uvicorn.Config(app_fastapi, workers=1, loop="asyncio", reload=True))
+    server = Server(config=uvicorn.Config(app_fastapi, reload=True, workers=1, loop="asyncio"))
 
     api = asyncio.create_task(server.serve())
     sched = asyncio.create_task(app_rocketry.serve())

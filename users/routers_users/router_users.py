@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends
-from users.routers.schemas_users import UserDisplay, UserBase
+from users.routers_users.schemas_users import UserDisplay, UserBase
 from sqlalchemy.orm.session import Session
 from database import get_db
 from users.db_users.db_actions_users import create_user, get_list_users
