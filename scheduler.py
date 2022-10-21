@@ -8,4 +8,5 @@ app = Rocketry()
 
 @app.task('daily')
 async def do_things():
-    await update_dresses()
+    pass
+    # await update_dresses()
