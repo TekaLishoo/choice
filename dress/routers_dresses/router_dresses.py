@@ -20,5 +20,5 @@ def rout_list_dresses(db: MongoClient = Depends(get_mongodb)):
 
 @router.get('/choice', response_class=HTMLResponse)
 def choice_dress_front(request: Request):
-    return templates.TemplateResponse("dresschoice.html", {'request': request})
+    return templates.TemplateResponse("dresschoicechoice.html", {'request': request})
 
