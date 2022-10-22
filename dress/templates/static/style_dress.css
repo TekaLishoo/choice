@@ -198,3 +198,8 @@ section {
     background: #540d0b;
     transform: translate(0, 0.25em);
 }
+
+.img-choice {
+    width: 560px;
+    height: 808px;
+}

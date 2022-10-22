@@ -24,7 +24,7 @@
 <main>
     <section class="text-section">
         <div class="choice-text">Do you like this dress?</div>
-        <img src="{{ url_for('static', path='/group-image.jpg') }}" alt="icon-logo">
+        <divclass="img-choice"><img src="data:image/png;base64,{{ images | safe }}" ></div>
         <div class="btns-like-dislike">
             <button class="btn-like"><span class='nav-item-reg'>Like</span></button>
             <button class="btn-dislike"><span class='nav-item-reg'>Dislike</span></button>
