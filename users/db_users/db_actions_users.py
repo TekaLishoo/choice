@@ -8,7 +8,7 @@ def create_user(db: Session, request: UserBase):
     new_user = ChUser(
         username=request.username,
         email=request.email,
-        password=Hash().bcrypt(request.password)
+        password=Hash().bcrypt(request.password),
     )
     db.add(new_user)
     db.commit()

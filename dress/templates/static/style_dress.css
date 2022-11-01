@@ -198,3 +198,24 @@ section {
     background: #540d0b;
     transform: translate(0, 0.25em);
 }
+
+.non-visiable {
+    visibility: hidden;
+}
+
+.img-spinner {
+    width: 150px;
+    height: 150px;
+    align-self: center;
+}
+
+.like-section {
+    display: flex;
+    width: 40%;
+}
+
+.img-choice {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}

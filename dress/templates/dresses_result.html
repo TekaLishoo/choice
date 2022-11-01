@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Choose a dress</title>
+    <title>Dresses</title>
     <link href="{{ url_for('static', path='/style_dress.css') }}" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Aleo:ital,wght@0,400;0,700;1,400;1,700&family=Red+Hat+Text:wght@500&display=swap" rel="stylesheet">
 </head>
 <body>
-<header>
+    <header>
     <div class="header">
     <div class="logo-info">
         <img src="{{ url_for('static', path='/logo.png') }}" alt="icon-logo">
@@ -22,16 +22,20 @@
 </div>
 </header>
 <main>
-    <section class="text-section">
-        <div class="choice-text">Do you like this dress?</div>
-        <div class="img-choice"><img src="data:image/png;base64,{{ images | safe }}" ></div>
-        <div class="btns-like-dislike">
-            <form action="/dresses/choice/like/{{ id_image }}" method="post">
-                <button class="btn-like" type="submit"><span class='nav-item-reg'>Like</span></button>
-            </form>
-            <form action="/dresses/choice/dislike/{{ id_image }}" method="post">
-                <button class="btn-dislike"><span class='nav-item-reg'>Dislike</span></button>
-            </form>
+    <section class="like-section">
+        <div class="choice-text">You will probably like these dresses</div>
+        <div class="img-choice">
+            {% for im in best_images %}
+                <div class="img-choice"><img src="data:image/png;base64,{{ im | safe }}" ></div>
+            {% endfor %}
+        </div>
+    </section>
+    <section class="like-section">
+        <div class="choice-text">You probably won't like these dresses</div>
+        <div class="img-choice">
+            {% for im in worse_images %}
+                <div class="img-choice"><img src="data:image/png;base64,{{ im | safe }}" ></div>
+            {% endfor %}
         </div>
     </section>
 </main>

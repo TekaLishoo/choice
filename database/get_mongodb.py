@@ -7,4 +7,3 @@ settings = Settings()
 
 def get_mongodb():
     return MongoClient(settings.MONGO_HOST, settings.MONGO_PORT)
-

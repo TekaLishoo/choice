@@ -18,17 +18,15 @@ class Server(uvicorn.Server):
 async def main():
     """Run scheduler and the API"""
 
-    server = Server(config=uvicorn.Config(app_fastapi, reload=True, workers=1, loop="asyncio"))
+    server = Server(
+        config=uvicorn.Config(app_fastapi, reload=True, workers=1, loop="asyncio")
+    )
 
     api = asyncio.create_task(server.serve())
     sched = asyncio.create_task(app_rocketry.serve())
 
     await asyncio.wait([sched, api])
 
+
 if __name__ == "__main__":
     asyncio.run(main())
-
-
-
-
-
