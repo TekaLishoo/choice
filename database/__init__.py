@@ -10,7 +10,7 @@ user_db = actual_settings.POSTGRES_USER
 pass_db = actual_settings.POSTGRES_PASSWORD
 host_db = actual_settings.POSTGRES_HOST
 
-database_url = f'postgresql+psycopg2://{user_db}:{pass_db}@{host_db}/{name_db}'
+database_url = f"postgresql+psycopg2://{user_db}:{pass_db}@{host_db}/{name_db}"
 
 engine = create_engine(database_url)
 

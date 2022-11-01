@@ -14,12 +14,21 @@ session = app_rocketry.session
 app.include_router(router_users.router)
 app.include_router(router_dresses.router)
 
-app.mount("/dress/templates/static", StaticFiles(directory="dress/templates/static"), name="static")
+app.mount(
+    "/dress/templates/static",
+    StaticFiles(directory="dress/templates/static"),
+    name="static",
+)
 
 models_users.Base.metadata.create_all(engine)
 user_choice = UserChoice()
 
 
-@app.get("/tasks", tags=['periodic tasks', ])
+@app.get(
+    "/tasks",
+    tags=[
+        "periodic tasks",
+    ],
+)
 async def read_tasks():
     return list(session.tasks)

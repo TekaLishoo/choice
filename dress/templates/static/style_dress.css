@@ -208,3 +208,11 @@ section {
     height: 150px;
     align-self: center;
 }
+
+.like-section {
+    display: flex;
+}
+
+.img-choice {
+    display: flex;
+}

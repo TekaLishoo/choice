@@ -22,10 +22,20 @@
 </div>
 </header>
 <main>
-    <section class="text-section">
+    <section class="like-section">
         <div class="choice-text">You will probably like these dresses</div>
         <div class="img-choice">
-          <img src="data:image/png;base64,{{ images | safe }}" >
+            {% for im in best_images %}
+                <div class="img-choice"><img src="data:image/png;base64,{{ im | safe }}" ></div>
+            {% endfor %}
+        </div>
+    </section>
+    <section class="like-section">
+        <div class="choice-text">You probably won't like these dresses</div>
+        <div class="img-choice">
+            {% for im in worse_images %}
+                <div class="img-choice"><img src="data:image/png;base64,{{ im | safe }}" ></div>
+            {% endfor %}
         </div>
     </section>
 </main>

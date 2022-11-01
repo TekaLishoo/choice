@@ -22,4 +22,15 @@ def image_to_str(np_3d_array):
     pil_image = Image.fromarray(np_3d_array.astype(np.uint8))
     buff = BytesIO()
     pil_image.save(buff, format="PNG")
-    return base64.b64encode(buff.getvalue()).decode('ascii')
+    return base64.b64encode(buff.getvalue()).decode("ascii")
+
+
+def best_worse_predictions(np_array, n):
+    """
+    Takes a numpy 2d array and
+    returns a tuple of n most preferable and not preferable indexes.
+    """
+    ind_sort = np_array.argsort(axis=0)
+    best = ind_sort[:, 0][::-1]
+    worse = ind_sort[:, 1]
+    return best[:n], worse[:n]
