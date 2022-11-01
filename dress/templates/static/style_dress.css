@@ -211,8 +211,11 @@ section {
 
 .like-section {
     display: flex;
+    width: 40%;
 }
 
 .img-choice {
     display: flex;
+    flex-wrap: wrap;
+    width: 100%;
 }
