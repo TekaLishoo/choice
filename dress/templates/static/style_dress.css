@@ -202,3 +202,9 @@ section {
 .non-visiable {
     visibility: hidden;
 }
+
+.img-spinner {
+    width: 150px;
+    height: 150px;
+    align-self: center;
+}

@@ -8,5 +8,8 @@ app = Rocketry()
 
 @app.task('daily')
 async def do_things():
+    """
+    Daily dresses update in database.
+    """
     pass
     # await update_dresses()

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Choose a dress</title>
+    <title>Dresses</title>
     <link href="{{ url_for('static', path='/style_dress.css') }}" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Aleo:ital,wght@0,400;0,700;1,400;1,700&family=Red+Hat+Text:wght@500&display=swap" rel="stylesheet">
 </head>
 <body>
-<header>
+    <header>
     <div class="header">
     <div class="logo-info">
         <img src="{{ url_for('static', path='/logo.png') }}" alt="icon-logo">
@@ -22,12 +22,11 @@
 </div>
 </header>
 <main>
-    <section class="vector-image">
-        <img src="{{ url_for('static', path='/group-image.png') }}" alt="icon-logo" class="img-spinner">
-    </section>
     <section class="text-section">
-        <div class="cool-text">Let machine learning guess what you'll like!</div>
-        <button class="btn-registr"><span class='nav-item-reg'>Sign Up</span></button>
+        <div class="choice-text">You will probably like these dresses</div>
+        <div class="img-choice">
+          <img src="data:image/png;base64,{{ images | safe }}" >
+        </div>
     </section>
 </main>
 <footer>
