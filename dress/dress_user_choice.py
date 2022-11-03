@@ -40,18 +40,16 @@ class UserChoice:
             np_others = np.append(np_others, temp_arr, axis=0)
 
         prediction = train_and_predict(im_array, result_array, np_others)
-
         best, worse = best_worse_predictions(prediction, 6)
-        print(best, worse)
 
         best_list = []
         worse_list = []
-        for id in best:
-            np_array_reshaped = np_others[id].reshape(404, 280, 3)
+        for index in best:
+            np_array_reshaped = np_others[index].reshape(404, 280, 3)
             best_list.append(image_to_str(np_array_reshaped))
 
-        for id in worse:
-            np_array_reshaped = np_others[id].reshape(404, 280, 3)
+        for index in worse:
+            np_array_reshaped = np_others[index].reshape(404, 280, 3)
             worse_list.append(image_to_str(np_array_reshaped))
 
         return best_list, worse_list
