@@ -32,5 +32,5 @@ def best_worse_predictions(np_array, n):
     """
     ind_sort = np_array.argsort(axis=0)
     best = ind_sort[:, 0][::-1]
-    worse = ind_sort[:, 1]
+    worse = ind_sort[:, 1][::-1]
     return best[:n], worse[:n]
