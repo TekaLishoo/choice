@@ -23,7 +23,7 @@
 </header>
 <main>
     <section class="like-section">
-        <div class="choice-text">You will probably like these dresses</div>
+        <div class="choice-text">You probably won't like these dresses</div>
         <div class="img-choice">
             {% for im in best_images %}
                 <img src="data:image/png;base64,{{ im | safe }}" class="img-like">
@@ -31,7 +31,7 @@
         </div>
     </section>
     <section class="like-section">
-        <div class="choice-text">You probably won't like these dresses</div>
+        <div class="choice-text">You will probably like these dresses</div>
         <div class="img-choice">
             {% for im in worse_images %}
                 <img src="data:image/png;base64,{{ im | safe }}" class="img-like">
