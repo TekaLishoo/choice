@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dresses</title>
+    <link href="{{ url_for('static', path='/style_dress.css') }}" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="http://fonts.cdnfonts.com/css/magra" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Aleo:ital,wght@0,400;0,700;1,400;1,700&family=Red+Hat+Text:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+    <div class="header">
+    <div class="logo-info">
+        <img src="{{ url_for('static', path='/logo.png') }}" alt="icon-logo">
+        <span class="your-choice">Your choice</span>
+    </div>
+    <button class="btn-login"><span class='nav-item'>Login</span>
+    </button>
+</div>
+</header>
+<main>
+    <section class="like-section">
+        <div class="choice-text">You probably won't like these dresses</div>
+        <div class="img-choice">
+            {% for im in best_images %}
+                <img src="data:image/png;base64,{{ im | safe }}" class="img-like">
+            {% endfor %}
+        </div>
+    </section>
+    <section class="like-section">
+        <div class="choice-text">You will probably like these dresses</div>
+        <div class="img-choice">
+            {% for im in worse_images %}
+                <img src="data:image/png;base64,{{ im | safe }}" class="img-like">
+            {% endfor %}
+        </div>
+    </section>
+</main>
+<footer>
+    <div class="all-rights">All Rights Reserved © Your choice</div>
+    <ul class="sn-icons">
+        <li class="sn-li"><a class="sn-li" href="https://github.com/TekaLishoo" target="_blank"><img src="{{ url_for('static', path='/git.png') }}" alt="icon-git"></a></li>
+        <li class="sn-li"><a class="sn-li" href="https://t.me/tekaLishoo" target="_blank"><img src="{{ url_for('static', path='/telegram.png') }}" alt="icon-telegram"></a>
+        </li>
+        <li class="sn-li"><a class="sn-li" href="https://www.linkedin.com/in/kate-lishynskaya-852376231/" target="_blank"><img src="{{ url_for('static', path='/linkedin.png') }}" alt="icon-linkedin"></a></li>
+    </ul>
+</footer>
+</body>
+</html>
